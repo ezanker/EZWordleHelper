@@ -331,14 +331,14 @@
 
                 <div class="InforCont mb-2">
                     <h5>Most Frequent Letters:</h5>
-                    <div id="FreqLet" class="" style="display: flex; flex-direction: row; flex-wrap: wrap; min-height: 40px; ">
+                    <div id="FreqLet" class="" style="display: flex; flex-direction: row; flex-wrap: wrap; min-height: 40px; text-transform: uppercase;">
 
                     </div>
                 </div>
 
                 <div class="InforCont mb-2">
                     <h5>Most Frequent by Position:</h5>
-                    <div id="FreqPos" class="" style="display: flex; flex-direction: row; flex-wrap: wrap; min-height: 40px; ">
+                    <div id="FreqPos" class="" style="display: flex; flex-direction: row; flex-wrap: wrap; min-height: 40px; text-transform: uppercase;">
                         <div id="pos1" style="width: 48px; text-align: center;"></div>
                         <div id="pos2" style="width: 48px; text-align: center;"></div>
                         <div id="pos3" style="width: 48px; text-align: center;"></div>
@@ -714,8 +714,9 @@
             console.log("SortedStats: ", SortedStats);
 
             var fl = "";
-            for (var i = 0; i < 6; i++) {
-                fl = fl + SortedStats.Overall[i].letter + ", ";
+            for (var i = 0; i < 12; i++) {
+                fl = fl + SortedStats.Overall[i].letter ;
+                if (i < 11) fl = fl + ", ";
             }
             $("#FreqLet").text(fl);
 
