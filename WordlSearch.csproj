@@ -75,7 +75,10 @@
     <Content Include="scripts\jquery.min.js" />
     <Content Include="scripts\kendoUI\cultures\kendo.culture.en-US.min.js" />
     <Content Include="scripts\kendoUI\jszip.min.js" />
-    <Content Include="default.html" />
+    <Content Include="index2.html" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\LICENSE.txt" />
+    <Content Include="scripts\kendoUI\styles\fonts\glyphs\KendoUIGlyphs.svg" />
+    <Content Include="scripts\kendoUI\styles\fonts\glyphs\WebComponentsIcons.svg" />
     <Content Include="WordleWords.html" />
     <Content Include="scripts\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="scripts\bootstrap\js\bootstrap.min.js.map" />
@@ -126,6 +129,25 @@
     <None Include="packages.config" />
     <Content Include="scripts\kendoUI\cultures\kendo.culture.en-US.min.js.map" />
     <Content Include="scripts\kendoUI\messages\kendo.messages.en-US.min.js.map" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSans-Bold.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSans-ExtraLight.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSans-Oblique.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSans.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSansMono-Bold.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSansMono-BoldOblique.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSansMono-Oblique.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSansMono.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSerif-Bold.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSerif-BoldItalic.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSerif-Italic.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\DejaVu\DejaVuSerif.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\glyphs\KendoUIGlyphs.eot" />
+    <Content Include="scripts\kendoUI\styles\fonts\glyphs\KendoUIGlyphs.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\glyphs\KendoUIGlyphs.woff" />
+    <Content Include="scripts\kendoUI\styles\fonts\glyphs\WebComponentsIcons.eot" />
+    <Content Include="scripts\kendoUI\styles\fonts\glyphs\WebComponentsIcons.ttf" />
+    <Content Include="scripts\kendoUI\styles\fonts\glyphs\WebComponentsIcons.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
