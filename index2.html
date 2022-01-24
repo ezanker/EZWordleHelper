@@ -354,6 +354,17 @@
     <div style="display: none;">
 
         <div id="WinHelp">
+            <p>Use this "helper/cheat" site in another browser tab/window while playing Wordle.</p>
+
+            <p>After each round in Wordle, enter the same word here by clicking the '...' button to the right of the corresponding game board row.</p>
+
+            <p>Once the same word is entered, click on each letter as needed to cycle through the states/colors so that they match the row colors in Wordle, then click the "Update Word List" button below the game board.</p>
+
+            <p>The list of words on the right is then updated to contain only 5 letter words that work within the new constraints, allowing you to make more educated guesses after each round.</p>
+
+            <p>The letter frequency score next to each words is an indication of how common the letters in that word are. The higher the score, the more frequently the letters in the word occur in the overall list of words.</p>
+
+            <p> Click the "Reset" button to clear the board and start over.</p>
 
 
 
@@ -615,7 +626,8 @@
         });
 
         $("#WinHelp").kendoWindow({
-            actions: [ "Close"],
+            actions: ["Close"],
+            modal: true,
             draggable: true,
             resizable: true,
             width: "500px",
