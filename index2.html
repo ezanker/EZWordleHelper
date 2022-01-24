@@ -199,6 +199,10 @@
             color: rgb(140,140,142);
         }
 
+        h5 {
+            color: rgba(215,218,220,0.5);
+        }
+
     </style>
 </head>
 <body>
@@ -343,6 +347,13 @@
                     </div>
                 </div>
 
+                <div class="InforCont mb-2">
+                    <h5>Good Starting Words:</h5>
+                    <div id="StartWords" class="" style="display: flex; flex-direction: row; flex-wrap: wrap; min-height: 40px; ">
+                        arose, irate, later, saint, raise
+                    </div>
+                </div>
+
             </div>
 
             <div id="RightPanel" class="col">
@@ -380,6 +391,20 @@
 
 
     <script>
+
+        var PersistUserChanges = {
+            StatsKey: "EZWordleHelperStats",
+
+            SaveStats: function (options) {
+                if (options) {
+                    localStorage.setItem(PersistUserChanges.StatsKey, JSON.stringify(options));
+                }
+            },
+            GetStats: function () {
+                var options = localStorage.getItem(PersistUserChanges.StatsKey);
+                return options ? JSON.parse(options) : null;
+            },
+        };
 
         var SortedStats = {
             Overall: [],
@@ -443,6 +468,9 @@
             ],
         });
 
+        $(document).on('click', '.k-overlay', function () {
+            $("#WinHelp").data("kendoWindow").close();
+        });
 
         $(document).on("click", ".gametile", function () {
             if ($(this).hasClass("state1")) {
@@ -633,78 +661,90 @@
             width: "500px",
             title: "Instructions",
             visible: false,
+            animation: {
+                open: { effects: "zoomIn slideIn:right", duration: 400 },
+                close: { effects: "zoomIn slideIn:left", duration: 400, reverse: true }
+            },
+
         });
 
         function CalculateStats() {
-            var stats = {
-                Overall: {},
-                l0: {},
-                l1: {},
-                l2: {},
-                l3: {},
-                l4: {},
-            };
+            var ss = PersistUserChanges.GetStats();
+            if (ss) {
+                SortedStats = ss;
+            } else {
 
-            La.forEach(function (word) {
-                for (var i = 0; i < word.length; i++) {
-                    var character = word.charAt(i);
-                    stats['Overall'][character] = stats['Overall'][character] + 1 || 1
-                    stats['l' + i][character] = stats['l' + i][character] + 1 || 1
-                }
-            });
+                var stats = {
+                    Overall: {},
+                    l0: {},
+                    l1: {},
+                    l2: {},
+                    l3: {},
+                    l4: {},
+                };
 
-            SortedStats.Overall = Object.entries(stats.Overall).map(function (elem) { return {letter: elem[0], Count: elem[1]}; });
-            SortedStats.Overall.sort(function (a, b) {return b.Count - a.Count; });
+                La.forEach(function (word) {
+                    for (var i = 0; i < word.length; i++) {
+                        var character = word.charAt(i);
+                        stats['Overall'][character] = stats['Overall'][character] + 1 || 1
+                        stats['l' + i][character] = stats['l' + i][character] + 1 || 1
+                    }
+                });
 
-            SortedStats.l0 = Object.entries(stats.l0).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
-            SortedStats.l0.sort(function (a, b) { return b.Count - a.Count; });
+                SortedStats.Overall = Object.entries(stats.Overall).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
+                SortedStats.Overall.sort(function (a, b) { return b.Count - a.Count; });
 
-            SortedStats.l1 = Object.entries(stats.l1).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
-            SortedStats.l1.sort(function (a, b) { return b.Count - a.Count; });
+                SortedStats.l0 = Object.entries(stats.l0).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
+                SortedStats.l0.sort(function (a, b) { return b.Count - a.Count; });
 
-            SortedStats.l2 = Object.entries(stats.l2).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
-            SortedStats.l2.sort(function (a, b) { return b.Count - a.Count; });
+                SortedStats.l1 = Object.entries(stats.l1).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
+                SortedStats.l1.sort(function (a, b) { return b.Count - a.Count; });
 
-            SortedStats.l3 = Object.entries(stats.l3).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
-            SortedStats.l3.sort(function (a, b) { return b.Count - a.Count; });
+                SortedStats.l2 = Object.entries(stats.l2).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
+                SortedStats.l2.sort(function (a, b) { return b.Count - a.Count; });
 
-            SortedStats.l4 = Object.entries(stats.l4).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
-            SortedStats.l4.sort(function (a, b) { return b.Count - a.Count; });
+                SortedStats.l3 = Object.entries(stats.l3).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
+                SortedStats.l3.sort(function (a, b) { return b.Count - a.Count; });
 
+                SortedStats.l4 = Object.entries(stats.l4).map(function (elem) { return { letter: elem[0], Count: elem[1] }; });
+                SortedStats.l4.sort(function (a, b) { return b.Count - a.Count; });
+
+                PersistUserChanges.SaveStats(SortedStats);
+            }
             console.log("SortedStats: ", SortedStats);
 
             var fl = "";
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 6; i++) {
                 fl = fl + SortedStats.Overall[i].letter + ", ";
             }
             $("#FreqLet").text(fl);
 
             fl = "Pos 1<br />";
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 6; i++) {
                 fl = fl + SortedStats.l0[i].letter + "<br />";
             }
             $("#pos1").html(fl);
 
             fl = "Pos 2<br />";
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 6; i++) {
                 fl = fl + SortedStats.l1[i].letter + "<br />";
             }
             $("#pos2").html(fl);
 
             fl = "Pos 3<br />";
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 6; i++) {
                 fl = fl + SortedStats.l2[i].letter + "<br />";
             }
             $("#pos3").html(fl);
 
             fl = "Pos 4<br />";
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 6; i++) {
                 fl = fl + SortedStats.l3[i].letter + "<br />";
             }
             $("#pos4").html(fl);
 
             fl = "Pos 5<br />";
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 6; i++) {
                 fl = fl + SortedStats.l4[i].letter + "<br />";
             }
             $("#pos5").html(fl);
