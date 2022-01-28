@@ -251,6 +251,40 @@
         .btngrpgame .k-button {
             padding: 6px 12px;
         }
+
+
+        @media (max-width: 760.98px) {
+
+            .board {
+                grid-gap: 5px;
+                padding: 0 8px 8px 8px;
+                box-sizing: border-box;
+                width: 350px;
+                height: 350px;
+            }
+            .gamerow {
+                grid-gap: 5px;
+            }
+
+            .gametile, .wordentry {
+                width: 50px;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+                font-weight: bold;
+                vertical-align: middle;
+                box-sizing: border-box;
+                color: rgb(215,218,220);
+                text-transform: uppercase;
+                user-select: none;
+                border: 2px solid rgb(58,58,60);
+            }
+            .wordentry {
+                border: 0;
+            }
+        }
     </style>
 </head>
 <body>
