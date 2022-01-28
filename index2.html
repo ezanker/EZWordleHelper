@@ -291,6 +291,22 @@
             .wordentry {
                 border: 0;
             }
+
+            .ApplyButton {
+                width: 350px;
+                padding: 8px;
+                background-color: rgb(18,18,19);
+                font-family: Arial;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+            }
+                .ApplyButton .btn-lg {
+                    padding: 0.4em 0.7em;
+                    font-size: 1rem;
+                }
+
+
         }
     </style>
 </head>
@@ -301,7 +317,8 @@
 
         <div id="HeadingRow" class="row">
             <div id="HeadPanel" class="col">
-                <img src="EZWHlogo.svg" style="padding: 8px 0 0 8px;" />
+                <img src="EZWHlogo.svg" style="padding: 8px 0 0 8px;" class="d-none d-sm-inline" />
+                <img src="EZWHlogoSM.svg" style="padding: 4px 0 0 8px;" class="d-sm-none " />
             </div>
             <div class="col-auto">
                 <div id="select-game" class="btngrpgame ">
