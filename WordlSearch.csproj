@@ -67,6 +67,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="apple-launch-1125x2436.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="apple-launch-1242x2208.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="apple-launch-1242x2688.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="apple-launch-750x1334.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="apple-launch-828x1792.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="apple-touch-icon.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
