@@ -602,7 +602,7 @@
         });
 
         //List of valis 5 letter words (lewdle)
-        var lewdleRaw = ["BONER", "FELCH", "PUSSY", "TAINT", "SEMEN", "DILDO", "FARTS", "CHODE", "MINGE", "GONAD", "TWATS", "SPUNK", "QUEEF", "PRICK", "TITTY", "CRAPS", "BALLS", "CUSSY", "SPERM", "BULGE", "PANTS", "PENIS", "ARSES", "CUNTS", "KNOBS", "BUSSY", "FUCKS", "JIZZY", "WANKS", "TURDS", "SHITS", "ASSES", "COCKS", "BUTTS", "LOADS", "CHOAD", "BOOTY", "QUIMS", "DICKS", "BOOBS", "LEWDS", "CUNTY", "TESTE", "FANNY", "SHITE", "DAMNS", "FRICK", "SHATS", "TOOTS", "POOPS", "SHART", "HUSSY", "DONGS", "SHAFT", "GROIN", "MOOBS", "GONAD", "GROPE", "LOINS", "HORNY", "JOBBY", "NAKED", "ERECT", "RANDY", "POUND", "NUDES", "HINEY", "BREED", "COOCH", "PORNO", "MOANS", "CUMMY", "LABIA", "PUBES", "BONED", "VULVA", "CLITS", "BUSTY", "FECES", "TEATS", "FECAL", "SCREW", "BOINK", "GOOCH", "MOIST", "SPANK", "WHIPS", "ROPES", "LUBED", "KINKY", "BOOBY", "FUCKY", "CREAM", "BLOWS", "SNOGS", "WILLY", "TRUMP", "MILFS", "DILFS", "GILFS", "PISSY", "URINE", "POOPY", "FISTS", "VEINY", "THROB", "SWING", "THICK", "RIMMY", "SMASH", "TWERK", "ENEMA", "WANGS", "ORGAN", "FILTH", "CHOKE", "MOMMY", "DADDY", "MUNCH", "HANDY", "PUBIC", "THIGH", "FLAPS", "WENIS", "HOOCH", "WENCH", "SKEET", "RYCOP", "BOOBA"];
+        var lewdleRaw = ["BONER", "FELCH", "PUSSY", "TAINT", "SEMEN", "DILDO", "FARTS", "CHODE", "MINGE", "GONAD", "TWATS", "SPUNK", "QUEEF", "PRICK", "TITTY", "CRAPS", "BALLS", "CUSSY", "SPERM", "BULGE", "PANTS", "PENIS", "ARSES", "CUNTS", "KNOBS", "BUSSY", "FUCKS", "JIZZY", "WANKS", "TURDS", "SHITS", "ASSES", "COCKS", "BUTTS", "LOADS", "CHOAD", "BOOTY", "QUIMS", "DICKS", "BOOBS", "LEWDS", "CUNTY", "TESTE", "FANNY", "SHITE", "DAMNS", "FRICK", "SHATS", "TOOTS", "POOPS", "SHART", "HUSSY", "DONGS", "SHAFT", "GROIN", "MOOBS", "GONAD", "GROPE", "LOINS", "HORNY", "JOBBY", "NAKED", "ERECT", "RANDY", "POUND", "NUDES", "HINEY", "BREED", "COOCH", "PORNO", "MOANS", "CUMMY", "LABIA", "PUBES", "BONED", "VULVA", "CLITS", "BUSTY", "FECES", "TEATS", "FECAL", "SCREW", "BOINK", "GOOCH", "MOIST", "SPANK", "WHIPS", "ROPES", "LUBED", "KINKY", "BOOBY", "FUCKY", "CREAM", "BLOWS", "SNOGS", "WILLY", "TRUMP", "MILFS", "DILFS", "GILFS", "PISSY", "URINE", "POOPY", "FISTS", "VEINY", "THROB", "SWING", "THICK", "RIMMY", "SMASH", "TWERK", "ENEMA", "WANGS", "ORGAN", "FILTH", "CHOKE", "MOMMY", "DADDY", "MUNCH", "HANDY", "PUBIC", "THIGH", "FLAPS", "WENIS", "HOOCH", "WENCH", "SKEET", "RYCOP", "BOOBA"]
         var lewdle = Array.from(new Set(lewdleRaw));
         var DataArrLewdle = lewdle.map(function (element) {
             var wordObj = { word: element.toLowerCase() };
@@ -810,11 +810,7 @@
                 regexstring: ['.', '.', '.', '.', '.'],
                 inc: [],
                 abs: [],
-                not0: [],
-                not1: [],
-                not2: [],
-                not3: [],
-                not4: [],
+                notAtPos: [[],[],[],[],[]],
             }
 
             var tempAbs = [];
@@ -828,7 +824,7 @@
                             filter.regexstring[idx] = letter;
                         } else if ($(this).hasClass('state2')) {
                             if (!filter.inc.includes(letter)) filter.inc.push(letter);
-                            if (!filter['not' + idx].includes(letter)) filter['not' + idx].push(letter)
+                            if (!filter.notAtPos[idx].includes(letter)) filter.notAtPos[idx].push(letter);
                         } else {
                             if (!tempAbs.includes(letter)) tempAbs.push(letter);
                         }
@@ -847,35 +843,50 @@
             const regex0 = new RegExp(filter.regexstring.join(''), 'g') // regex constructor
             var DataArrToSearch = GAME == 1 ? DataArrLewdle : DataArr;
             var DataArrInc = DataArrToSearch.filter(function (element) {
-                var ret = false;
+                var ret = true;
 
-                if (filter.regexstring.join('') == '.....' || regex0.test(element.word)) {
-                    ret = true;
-                    filter.not0.forEach(function (item) {
-                        if (element.word.indexOf(item) == 0) ret = false;
-                    });
-                    filter.not1.forEach(function (item) {
-                        if (element.word.indexOf(item) == 1) ret = false;
-                    });
-                    filter.not2.forEach(function (item) {
-                        if (element.word.indexOf(item) == 2) ret = false;
-                    });
-                    filter.not3.forEach(function (item) {
-                        if (element.word.indexOf(item) == 3) ret = false;
-                    });
-                    filter.not4.forEach(function (item) {
-                        if (element.word.indexOf(item) == 4) ret = false;
-                    });
+                //check for correct spot
+                filter.regexstring.forEach(function (item, index) {
+                    if (item != '.') {
+                        if (element.word.indexOf(item) != index) {
+                            ret = false;
+                            return false;
+                        }
+                    }
+                });
+                if (!ret) return false;
 
-                    filter.inc.forEach(function (elem) {
-                        if (element.word.indexOf(elem) == -1) ret = false;
+                //check for letters included but not at spot
+                filter.notAtPos.forEach(function (letterList, index) {
+                    letterList.forEach(function (item) {
+                        if (element.word.indexOf(item) == index) {
+                            ret = false;
+                            return false;
+                        }
                     });
-                    filter.abs.forEach(function (elem) {
-                        if (element.word.indexOf(elem) != -1) ret = false;
-                    });
-                }
+                    if (!ret) return false;
+                });
+                if (!ret) return false;
 
-                return ret;
+                //included letters
+                filter.inc.forEach(function (elem) {
+                    if (element.word.indexOf(elem) == -1) {
+                        ret = false;
+                        return false;
+                    }
+                });
+                if (!ret) return false;
+
+                //excluded letters
+                filter.abs.forEach(function (elem) {
+                    if (element.word.indexOf(elem) != -1) {
+                        ret = false;
+                        return false;
+                    }
+                });
+                if (!ret) return false;
+
+                return true;
             });
 
 
