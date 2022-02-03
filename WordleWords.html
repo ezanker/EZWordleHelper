@@ -11,16 +11,21 @@
     <meta http-equiv="cleartype" content="on" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?x=1.0" />
 
-    <link href="scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-
+    <link href="scripts/bootstrap/css/bootstrap.min.css?v=1.0" rel="stylesheet" />
 
     <link href="scripts/kendoUI/styles/kendo.common.min.css" rel="stylesheet" />
-    <link href="scripts/kendoUI/styles/kendo.moonlight.min.css" rel="stylesheet" />
-    <link href="scripts/kendoUI/styles/kendo.moonlight.mobile.min.css" rel="stylesheet" />
+    <link href="scripts/kendoUI/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="scripts/kendoUI/styles/kendo.metroblack.min.css" rel="stylesheet" />
+
     <style>
         html, body {
             overflow: hidden;
-            background-color: #515560;
+            background-color: rgb(18,18,19);
+            color: white;
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            margin: 0;
         }
 
         #contentDiv {
@@ -29,11 +34,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #515560;
+            background-color: rgb(18,18,19);
         }
 
         #HeadingRow {
-            background-color: #515560;
+            background-color: rgb(18,18,19);
             color: white;
             box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
             margin-bottom: 8px;
@@ -56,10 +61,10 @@
 
         <div id="MainRow" class="row">
             <!-- LEFT PANEL -->
-            <div id="LeftPanel" class="col-xs-6">
+            <div id="LeftPanel" class="col">
                 <div id="filter" style="width: 100%"></div>
             </div>
-            <div id="RightPanel" class="col-xs-6">
+            <div id="RightPanel" class="col">
                 <div id="grid"></div>
             </div>
         </div>
@@ -112,7 +117,7 @@
 
         $("#grid").kendoGrid({
             dataSource: dataSource,
-            height: 550,
+            height: CalcGridHeight(),
             scrollable: true,
             sortable: true,
             filterable: false,
@@ -122,6 +127,14 @@
 
 
         });
+
+        $("#filter").css('max-height', CalcGridHeight() + 'px').css('overflow', 'auto');
+
+        function CalcGridHeight() {
+            var avail = $("#contentDiv").height();
+            var head = $("#HeadingRow").outerHeight(true);
+            return avail - head - 8;
+        }
 
 
     </script>
