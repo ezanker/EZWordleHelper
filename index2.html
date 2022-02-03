@@ -840,51 +840,34 @@
 
             console.log("FILTER OBJECT: ", filter);
 
-            const regex0 = new RegExp(filter.regexstring.join(''), 'g') // regex constructor
             var DataArrToSearch = GAME == 1 ? DataArrLewdle : DataArr;
             var DataArrInc = DataArrToSearch.filter(function (element) {
-                var ret = true;
 
                 //check for correct spot
-                filter.regexstring.forEach(function (item, index) {
-                    if (item != '.') {
-                        if (element.word.indexOf(item) != index) {
-                            ret = false;
-                            return false;
-                        }
-                    }
+                var cSpot = filter.regexstring.every(function (item, index) {
+                    return item == '.' || element.word.charAt(index) == item;
                 });
-                if (!ret) return false;
+                if (!cSpot) return false;
 
                 //check for letters included but not at spot
-                filter.notAtPos.forEach(function (letterList, index) {
-                    letterList.forEach(function (item) {
-                        if (element.word.indexOf(item) == index) {
-                            ret = false;
-                            return false;
-                        }
+                var nSpot = filter.notAtPos.every(function (letterList, index) {
+                    return letterList.every(function (item) {
+                        return element.word.charAt(index) != item;
                     });
-                    if (!ret) return false;
                 });
-                if (!ret) return false;
+                if (!nSpot) return false;
 
                 //included letters
-                filter.inc.forEach(function (elem) {
-                    if (element.word.indexOf(elem) == -1) {
-                        ret = false;
-                        return false;
-                    }
+                var incL = filter.inc.every(function (elem) {
+                    return element.word.indexOf(elem) != -1
                 });
-                if (!ret) return false;
+                if (!incL) return false;
 
                 //excluded letters
-                filter.abs.forEach(function (elem) {
-                    if (element.word.indexOf(elem) != -1) {
-                        ret = false;
-                        return false;
-                    }
+                var excL = filter.abs.every(function (elem) {
+                    return element.word.indexOf(elem) == -1
                 });
-                if (!ret) return false;
+                if (!excL) return false;
 
                 return true;
             });
