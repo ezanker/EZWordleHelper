@@ -252,7 +252,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Instructions</h5>
-              <button type="button" class="btn btn-secondary btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               
@@ -288,7 +288,8 @@
 
     <script>
 
-        $("#NumLeft").empty().append('<div>' + DataArr.length + '</div >');
+        //$("#NumLeft").empty().append('<div>' + DataArr.length + '</div >');
+        AnimateNumLeft(0, DataArr.length);      
      
          $('input[name=select-game]').change(function() {
             GAME = $(this).data('game');
@@ -375,19 +376,20 @@
             $("#Correct").empty().append('<div>_</div><div>_</div><div>_</div><div>_</div><div>_</div>');
             $(".gametile").text('').removeClass("state1 state2 state3");
             $(".gamerow").data("entered", false);
-            $("#NumLeft").empty().append('<div>' + DataArr.length + '</div >');
 
+            var end = DataArr.length;
             var jsData = DataArr;
 
             if (GAME == 1) {
-                $("#NumLeft").empty().append('<div>' + DataArrLewdle.length + '</div >');
-
+                end = DataArrLewdle.length; 
                 jsData = DataArrLewdle;
 
                 $("#StartWords").html('<span class="swlist">organ</span><span class="swlist">boner</span>');
             } else {
                 $("#StartWords").html('<span class="swlist">raise</span><span class="swlist">saint</span><span class="swlist">irate</span><span class="swlist">later</span>');
             }
+
+            AnimateNumLeft(0, end);               ;
 
             ShowStats();
             BindGrid(jsData, true);
@@ -461,7 +463,10 @@
             $("#Included").empty().append(IncLtr);
             $("#Excluded").empty().append(ExcLtr);
 
-            $("#NumLeft").empty().append('<div>' + DataArrInc.length + '</div >');
+            //$("#NumLeft").empty().append('<div>' + DataArrInc.length + '</div >');
+            var start = $("#NumLeft > DIV").text();
+            var end = DataArrInc.length;
+            AnimateNumLeft(start, end);          
         }
 
         function CalcGridHeight() {
@@ -531,6 +536,16 @@
             }
             $("#pos5").html(fl);
 
+        }
+
+        function AnimateNumLeft(start, end){
+            $({someValue: start}).animate({someValue: end}, {
+                duration: 1000,
+                easing:'swing', 
+                step: function() { 
+                    $("#NumLeft").html('<div>' + Math.ceil(this.someValue)  + '</div >');
+                }
+            });    
         }
         
     </script>
