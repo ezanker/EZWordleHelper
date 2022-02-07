@@ -304,6 +304,7 @@
         tippy('[title]', {
             arrow: false,
             delay: 500,
+            touch: ["hold", 500],
             content(reference) {
                 const title = reference.getAttribute('title');
                 reference.removeAttribute('title');
