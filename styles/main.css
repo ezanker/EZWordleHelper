@@ -1,0 +1,321 @@
+.ApplyButton {
+    width: 415px;
+    padding: 10px;
+    background-color: rgb(18, 18, 19);
+    font-family: Arial;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ApplyButton button {
+    width: 50%;
+    margin: 0 4px;
+}
+
+.board {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 5px;
+    padding: 0 10px 10px 10px;
+    box-sizing: border-box;
+    width: 415px;
+    height: 420px;
+    background-color: rgb(18, 18, 19);
+    font-family: Arial;
+}
+
+.gamerow {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 5px;
+}
+
+.gametile, .wordentry {
+    width: 62px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bold;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: rgb(215, 218, 220);
+    text-transform: uppercase;
+    user-select: none;
+    border: 2px solid rgb(58, 58, 60);
+}
+
+.wordentry {
+    border: 0;
+}
+
+.gametile.state1 {
+    background-color: rgb(83, 141, 78);
+}
+
+.gametile.state2 {
+    background-color: rgb(181, 159, 59);
+}
+
+.gametile.state3 {
+    background-color: rgb(58, 58, 60);
+}
+
+.WordEntryButton {
+    width: 100%;
+    height: 100%;
+}
+
+
+.CorrectLetters>div {
+    width: 62px;
+    height: 62px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    line-height: 2rem;
+    font-weight: bold;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: rgb(215, 218, 220);
+    text-transform: uppercase;
+    user-select: none;
+    border: 2px solid rgb(58, 58, 60);
+}
+
+.NumLetters>div {
+    width: 72px;
+    height: 42px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    font-weight: bold;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: rgb(215, 218, 220);
+    text-transform: uppercase;
+    user-select: none;
+    border: 2px solid rgb(58, 58, 60);
+    margin: 2px;
+}
+
+span.swlist {
+    /*width: 20px;*/
+    height: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    line-height: 1em;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: rgb(215, 218, 220);
+    text-transform: uppercase;
+    user-select: none;
+    border: 1px solid rgb(58, 58, 60);
+    margin: 1px 2px;
+    padding: 2px 4px;
+}
+
+span.lflist {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+    line-height: 1em;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: rgb(215, 218, 220);
+    text-transform: uppercase;
+    user-select: none;
+    border: 1px solid rgb(58, 58, 60);
+    margin: 0px;
+}
+
+.IncExcLetters>div {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    font-weight: bold;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: rgb(215, 218, 220);
+    text-transform: uppercase;
+    user-select: none;
+    border: 2px solid rgb(58, 58, 60);
+    margin: 2px;
+}
+
+.IncExcLetters.Inc>div {
+    background-color: rgb(181, 159, 59);
+}
+
+.IncExcLetters.Exc>div {
+    background-color: rgb(58, 58, 60);
+}
+
+.CorrectLetters>div.letter {
+    background-color: rgb(83, 141, 78);
+}
+
+.HelpHover {
+    float: right;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    cursor: help;
+    border-color: #00b0ae;
+    color: #00b0ae;
+}
+
+.HelpHover:hover {
+    background-color: #00b0ae;
+    color: white;
+}
+
+th.k-header .k-link {
+    font-weight: 700;
+    color: rgb(140, 140, 142);
+}
+
+h5, h6 {
+    color: rgba(215, 218, 220, 0.5);
+}
+
+.btn-outline-info {
+    opacity: 0.5;
+}
+
+.btngrpgame .k-button {
+    padding: 6px 12px;
+}
+
+
+@media (max-width: 760.98px) {
+
+    .board {
+        grid-gap: 5px;
+        padding: 0 8px 8px 8px;
+        box-sizing: border-box;
+        width: 350px;
+        height: 350px;
+    }
+
+    .gamerow {
+        grid-gap: 5px;
+    }
+
+    .gametile, .wordentry {
+        width: 50px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        font-weight: bold;
+        vertical-align: middle;
+        box-sizing: border-box;
+        color: rgb(215, 218, 220);
+        text-transform: uppercase;
+        user-select: none;
+        border: 2px solid rgb(58, 58, 60);
+    }
+
+    .wordentry {
+        border: 0;
+    }
+
+    .ApplyButton {
+        width: 350px;
+        padding: 8px;
+        background-color: rgb(18, 18, 19);
+        font-family: Arial;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ApplyButton .btn-lg {
+        padding: 0.4em 0.7em;
+        font-size: 1rem;
+    }
+}
+
+.jsgrid-grid-header, th.jsgrid-header-cell, .jsgrid-header-row>.jsgrid-header-cell {
+
+    background-color: rgb(14, 14, 14);
+    border-color: rgb(50, 50, 50);
+
+}
+
+.jsgrid-row>.jsgrid-cell {
+    background-color: rgb(18, 18, 19);
+}
+
+.jsgrid-alt-row>.jsgrid-cell {
+    background-color: rgb(29, 29, 29);
+}
+
+.jsgrid-cell, .jsgrid-grid-body {
+    border-color: rgb(50, 50, 50) !important;
+}
+
+
+.jsgrid-grid-body::-webkit-scrollbar-track, .jsgrid-header-scrollbar::-webkit-scrollbar-track {
+    border: 1px solid rgb(50, 50, 50);
+    padding: 2px 0;
+    background-color: rgb(38, 38, 39);
+}
+
+.jsgrid-grid-body::-webkit-scrollbar, .jsgrid-header-scrollbar::-webkit-scrollbar {
+    width: 16px;
+}
+
+.jsgrid-grid-body::-webkit-scrollbar-thumb, .jsgrid-header-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: #6c757d;
+    border: 1px solid rgb(50, 50, 50);
+}
+
+.tippy-content {
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.23);
+}
+
+.tippy-tooltip, .tippy-content {
+    background-color: #00b0ae;
+    color: #fff;
+    border-radius: 4px;
+
+}
+
+.modal-content, .alertify .ajs-dialog {
+    background-color: rgb(18, 18, 19);
+    border: 1px solid rgb(50, 50, 50);
+    box-shadow: 0 1px 3px rgba(255, 255, 255, 0.12), 0 1px 2px rgba(255, 255, 255, 0.23);
+}
+
+.btn-close {
+    color: white;
+}
+
+.alertify .ajs-header, .alertify .ajs-body, .alertify .ajs-footer {
+    border-color: rgb(50, 50, 50);
+    background-color: rgb(18, 18, 19);
+    color: White;
+}
+
+.alertify .ajs-footer {
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
