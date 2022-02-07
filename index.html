@@ -284,7 +284,7 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
-    <script src="scripts/main.js?v=1.02"></script>
+    <script src="scripts/main.js?v=1.03"></script>
 
     <script>
 
@@ -292,14 +292,12 @@
      
          $('input[name=select-game]').change(function() {
             GAME = $(this).data('game');
-            CalculateStats();
-            console.log(GAME); 
             $("#btnReset").trigger('click');
         });
 
 
         //Initialize controls
-
+        ShowStats();
         BindGrid(DataArr);
 
         tippy('[title]', {
@@ -311,7 +309,6 @@
             },
         });
 
- 
         //Handle user interaction
         //click gametile to cycle through the states/colors
         $(document).on("click", ".gametile", function () {
@@ -383,20 +380,6 @@
             var jsData = DataArr;
 
             if (GAME == 1) {
-                DataArrLewdle = lewdle.map(function (element) {
-                    element = element.toLowerCase();
-                    var wordObj = { word: element };
-                    //calc frequency score
-                    var score = 0;
-                    for (var i = 0; i < element.length; i++) {
-                        var character = element.charAt(i);
-                        SortedStats.Overall.forEach(function (item) {
-                            if (item.letter == character) score += item.Count;
-                        });
-                    }
-                    wordObj.Score = score;
-                    return wordObj;
-                });
                 $("#NumLeft").empty().append('<div>' + DataArrLewdle.length + '</div >');
 
                 jsData = DataArrLewdle;
@@ -406,20 +389,19 @@
                 $("#StartWords").html('<span class="swlist">raise</span><span class="swlist">saint</span><span class="swlist">irate</span><span class="swlist">later</span>');
             }
 
-
+            ShowStats();
             BindGrid(jsData, true);
 
         });
 
         //Functionality
-        function UpdateWordList() {
+        function GetCurrentFilter(){
             var filter = {
                 regexstring: ['.', '.', '.', '.', '.'],
                 inc: [],
                 abs: [],
                 notAtPos: [[],[],[],[],[]],
             }
-
             var tempAbs = [];
             $(".gamerow").each(function () {
                 if ($(this).data("entered")) {
@@ -447,39 +429,13 @@
 
             console.log("FILTER OBJECT: ", filter);
 
-            var DataArrToSearch = GAME == 1 ? DataArrLewdle : DataArr;
-            var DataArrInc = DataArrToSearch.filter(function (element) {
+            return filter;
+        }
 
-                //check for correct spot
-                var cSpot = filter.regexstring.every(function (item, index) {
-                    return item == '.' || element.word.charAt(index) == item;
-                });
-                if (!cSpot) return false;
-
-                //check for letters included but not at spot
-                var nSpot = filter.notAtPos.every(function (letterList, index) {
-                    return letterList.every(function (item) {
-                        return element.word.charAt(index) != item;
-                    });
-                });
-                if (!nSpot) return false;
-
-                //included letters
-                var incL = filter.inc.every(function (elem) {
-                    return element.word.indexOf(elem) != -1
-                });
-                if (!incL) return false;
-
-                //excluded letters
-                var excL = filter.abs.every(function (elem) {
-                    return element.word.indexOf(elem) == -1
-                });
-                if (!excL) return false;
-
-                return true;
-            });
-
-
+        function UpdateWordList() {
+            var filter = GetCurrentFilter();
+            var DataArrInc = GetFilteredWordList(filter);
+ 
             BindGrid(DataArrInc, true);
 
             //Update info area
@@ -508,9 +464,6 @@
             $("#NumLeft").empty().append('<div>' + DataArrInc.length + '</div >');
         }
 
-
-
-
         function CalcGridHeight() {
             var avail = $("#contentDiv").height();
             var head = $("#HeadingRow").outerHeight(true);
@@ -534,7 +487,51 @@
         }
 
 
+        function ShowStats() {
+            var ss;
+            if (GAME == 1){
+                ss = SortedStatsLewdle;
+            } else {
+                ss = SortedStats;
+            }
 
+            var fl = "";
+            for (var i = 0; i < ss.Overall.length; i++) {
+                fl = fl + '<span class="lflist" title="' + ss.Overall[i].Count + ' occurences">' + ss.Overall[i].letter + '</span>';
+            }
+            $("#FreqLet").html(fl);
+
+            fl = "Pos 1<br />";
+            for (var i = 0; i < 6; i++) {
+                fl = fl + '<span class="lflist" title="' + ss.l0[i].Count + ' occurences">' + ss.l0[i].letter + "</span><br />";
+            }
+            $("#pos1").html(fl);
+
+            fl = "Pos 2<br />";
+            for (var i = 0; i < 6; i++) {
+                fl = fl + '<span class="lflist" title="' + ss.l1[i].Count + ' occurences">' + ss.l1[i].letter + "</span><br />";
+            }
+            $("#pos2").html(fl);
+
+            fl = "Pos 3<br />";
+            for (var i = 0; i < 6; i++) {
+                fl = fl + '<span class="lflist" title="' + ss.l2[i].Count + ' occurences">' + ss.l2[i].letter + "</span><br />";
+            }
+            $("#pos3").html(fl);
+
+            fl = "Pos 4<br />";
+            for (var i = 0; i < 6; i++) {
+                fl = fl + '<span class="lflist" title="' + ss.l3[i].Count + ' occurences">' + ss.l3[i].letter + "</span><br />";
+            }
+            $("#pos4").html(fl);
+
+            fl = "Pos 5<br />";
+            for (var i = 0; i < 6; i++) {
+                fl = fl + '<span class="lflist" title="' + ss.l4[i].Count + ' occurences">' + ss.l4[i].letter + "</span><br />";
+            }
+            $("#pos5").html(fl);
+
+        }
         
     </script>
 </body>
