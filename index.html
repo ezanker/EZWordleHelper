@@ -288,8 +288,8 @@
 
     <script>
 
-        //$("#NumLeft").empty().append('<div>' + DataArr.length + '</div >');
-        AnimateNumLeft(0, DataArr.length);      
+        $("#NumLeft").empty().append('<div>' + DataArr.length + '</div >');
+     
      
          $('input[name=select-game]').change(function() {
             GAME = $(this).data('game');
@@ -389,8 +389,8 @@
                 $("#StartWords").html('<span class="swlist">raise</span><span class="swlist">saint</span><span class="swlist">irate</span><span class="swlist">later</span>');
             }
 
-            AnimateNumLeft(0, end);               ;
-
+                           ;
+            $("#NumLeft").empty().append('<div>' + end + '</div >');
             ShowStats();
             BindGrid(jsData, true);
 
