@@ -213,3 +213,9 @@ function GetFilteredWordList(filter){
 
     return DataArrInc;
 }
+
+
+function detectIE() {
+    var ua = window.navigator.userAgent;
+    return /MSIE|Trident/.test(ua);
+}

@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>EZ Wordle Helper</title>
+    <title>EZ Wordle Helper - Improve Your Guesses</title>
+    <meta name="description" content="Make more educated guesses in Wordle. This app filters down the list of valid 5 letter words as you receive feedback from Wordle, Lewdle, Absurdle, Dordle so you can choose your next guess wisely.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=420, initial-scale=1, maximum-scale=1.0, user-scalable=no, minimal-ui" />
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -275,7 +276,11 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
+
+    <div id="IEWarn" style="display: none;">
+        <h3>Sorry, Internet Explorer is not supported.</h3>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -287,6 +292,13 @@
     <script src="scripts/main.js?v=1.03"></script>
 
     <script>
+
+        if (detectIE()){
+
+            $("#contentDiv").hide();
+            $("#IEWarn").show();
+
+        }
 
         $("#NumLeft").empty().append('<div>' + DataArr.length + '</div >');
      
