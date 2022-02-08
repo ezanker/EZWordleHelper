@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [     
         {
-            "type": "pwa-chrome",
+            "type": "chrome",
             "request": "launch",
             "name": "Chrome index.html",
             "file": "c:\\Users\\ezanker\\OneDrive\\EZWordleGIT\\EZWordleHelper\\index.html"

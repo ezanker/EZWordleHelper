@@ -434,6 +434,8 @@
                             if (!filter.notAtPos[idx].includes(letter)) filter.notAtPos[idx].push(letter);
                         } else {
                             if (!tempAbs.includes(letter)) tempAbs.push(letter);
+                            //excluded letters are also not at a position (in case of repeated letters)
+                            if (!filter.notAtPos[idx].includes(letter)) filter.notAtPos[idx].push(letter);
                         }
                     });
                 }
