@@ -71,6 +71,13 @@
             flex: auto;
         }
 
+        .mod_no-smil #contentDiv {
+            display: none !important;
+        }
+        .mod_no-smil #IEWarn {
+            display: block !important;
+        }
+
     </style>
     <link rel="stylesheet" href="styles/main.css?v=1">
 </head>
@@ -289,16 +296,11 @@
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
-    <script src="scripts/main.js?v=1.03"></script>
+    <script src="scripts/main.js?v=1.04"></script>
 
     <script>
 
-        if (detectIE()){
-
-            $("#contentDiv").hide();
-            $("#IEWarn").show();
-
-        }
+            
 
         $("#NumLeft").empty().append('<div>' + DataArr.length + '</div >');
      
