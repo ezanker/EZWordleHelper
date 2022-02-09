@@ -295,12 +295,9 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
-    <script src="scripts/main.js?v=1.06"></script>
+    <script src="scripts/main.js?v=1.08"></script>
 
     <script>
-
-            
 
         $("#NumLeft").empty().append('<div>' + DataArr.length + '</div >');
      
@@ -309,7 +306,6 @@
             GAME = $(this).data('game');
             $("#btnReset").trigger('click');
         });
-
 
         //Initialize controls
         ShowStats();
@@ -375,7 +371,7 @@
                     }    
                 },
                 function() { 
-                   alertify.error('Entry Cancelled');           
+                   alertify.message('Entry Cancelled', 3);           
                 }
             );
         });
@@ -575,11 +571,15 @@
         }
 
         function AnimateNumLeft(start, end){
+ 
             $({someValue: start}).animate({someValue: end}, {
                 duration: 1000,
                 easing:'swing', 
                 step: function() { 
                     $("#NumLeft").html('<div>' + Math.ceil(this.someValue)  + '</div >');
+                },
+                complete: function(){
+                    $("#NumLeft").html('<div>' + end  + '</div >');
                 }
             });    
         }
