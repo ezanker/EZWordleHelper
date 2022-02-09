@@ -214,6 +214,16 @@ function GetFilteredWordList(filter){
         });
         if (!excL) return false;
 
+        //multiple occurrences
+        var mult = filter.multiple.every(function (elem) {
+            var count = 0;
+            for (let index = 0; index < element.word.length; index++) {
+                if (elem == element.word[index]) count++;               
+            }
+            return count > 1;
+        });
+        if (!mult) return false;
+
         return true;
     });
 

@@ -419,24 +419,42 @@
                 inc: [],
                 abs: [],
                 notAtPos: [[],[],[],[],[]],
+                multiple: [] // letters that must appear more than once
             }
+
             var tempAbs = [];
             $(".gamerow").each(function () {
                 if ($(this).data("entered")) {
                     var $tiles = $(this).find(".gametile");
+                    var repLet = [];
+                    var CorrectOrInc = [];
                     $tiles.each(function (idx) {
+                        
                         var letter = $(this).text().toLowerCase();
                         if ($(this).hasClass('state1')) {
                             //correct place
                             filter.regexstring[idx] = letter;
+                            if (CorrectOrInc.includes(letter)){
+                                if (!repLet.includes(letter)) repLet.push(letter);
+                            } else {
+                                CorrectOrInc.push(letter);
+                            }
                         } else if ($(this).hasClass('state2')) {
                             if (!filter.inc.includes(letter)) filter.inc.push(letter);
                             if (!filter.notAtPos[idx].includes(letter)) filter.notAtPos[idx].push(letter);
+                            if (CorrectOrInc.includes(letter)){
+                                if (!repLet.includes(letter)) repLet.push(letter);
+                            } else {
+                                CorrectOrInc.push(letter);
+                            }
                         } else {
                             if (!tempAbs.includes(letter)) tempAbs.push(letter);
                             //excluded letters are also not at a position (in case of repeated letters)
                             if (!filter.notAtPos[idx].includes(letter)) filter.notAtPos[idx].push(letter);
                         }
+                    });
+                    repLet.forEach(function(let){
+                        if (!filter.multiple.includes(let)) filter.multiple.push(let);
                     });
                 }
             });
