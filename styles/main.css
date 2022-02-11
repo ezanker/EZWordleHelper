@@ -202,6 +202,14 @@ h5, h6 {
 
 
 @media (max-width: 760.98px) {
+    #LeftPanel {
+        height: 420px;
+    }
+    #RightPanel {
+        position: absolute;
+        top: 460px;
+        left: 0; right: 0; bottom: 0;
+    }
 
     .board {
         grid-gap: 5px;
