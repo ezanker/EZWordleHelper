@@ -90,7 +90,7 @@
                 <img src="EZWHlogo.svg" style="padding: 8px 0 0 8px;" class="d-none d-sm-inline" />
                 <img src="EZWHlogoSM.svg" style="padding: 4px 0 0 8px;" class="d-sm-none " />
             </div>
-            <div class="col-auto">
+            <div class="col-auto ">
  
                 <div class="btn-group btn-group-sm" role="group" aria-label="toggle button group Wordle or Lewdle mode">
                     <input data-game="0" type="radio" class="btn-check" name="select-game" id="btnWordle" autocomplete="off" checked>
@@ -182,7 +182,7 @@
 
             </div>
 
-            <div id="MidPanel" class="col-md-auto order-5 d-none d-sm-block" style="max-width: 310px; padding-right: 22px;">
+            <div id="MidPanel" class="col order-5 d-none d-sm-block" style="max-width: 310px; padding-right: 22px;">
                 <div class="InforCont mb-2">
                     <h5>Correct Spot:<span class=" btn btn-sm btn-outline-info HelpHover" title="These letters are in the word and in the correct spot"><i class="fas fa-info"></i></span></h5>
                     <div id="Correct" class="CorrectLetters" style="display: flex; flex-direction: row; flex-wrap: nowrap ">
@@ -246,7 +246,7 @@
                 </div>
             </div>
 
-            <div id="RightPanel" class="col" style="min-width: 240px;">
+            <div id="RightPanel" class="col" style="min-width: 420px;max-width: 680px;">
                 
                 <div id="aggrid" style="width: 100%; height: 99%" class="ag-theme-balham-dark"></div>
                 
@@ -513,9 +513,9 @@
                     flex: 1,
                 },
                 columnDefs: [
-                    {headerName: "Valid Words Left", field: "word", cellClass: 'ValidWordCell'},
-                    {headerName: "Letter Freq Score", field: "Score"},
-                    {headerName: "Freq by Position", field: "PosScore"}
+                    {headerName: "Valid Words", field: "word", cellClass: 'ValidWordCell'},
+                    {headerName: "Freq Score", field: "Score"},
+                    {headerName: "Position Freq", field: "PosScore"}
                 ],
                 rowData: theData
             };     

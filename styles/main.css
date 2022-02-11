@@ -255,6 +255,9 @@ h5, h6 {
     font-family: Arial, Helvetica, sans-serif !important;
     font-size: 1em  !important;
 }
+#aggrid .ag-header-cell {
+    font-size: 0.75em  !important;
+}
 #aggrid .ag-root-wrapper,  #aggrid .ag-header{
     background-color: rgb(14, 14, 14);
     border-color: rgb(50, 50, 50);
